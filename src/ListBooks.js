@@ -19,6 +19,8 @@ class ListBooks extends Component {
 			shelf: 'wantToRead'
 		}
 		]
+		const { books, onUpdateBook } = this.props
+
 		return (
  		<div className="list-books">
             <div className="list-books-title">
@@ -27,7 +29,7 @@ class ListBooks extends Component {
             <div className="list-books-content">
               <div>
               {shelves.map((shelf) => (
-              		<BookShelf key={shelf.shelf} name={shelf.name} books={this.props.books.filter(book => book.shelf === `${shelf.shelf}`)} />
+              		<BookShelf key={shelf.shelf} name={shelf.name} onUpdateBook={onUpdateBook} books={books.filter(book => book.shelf === `${shelf.shelf}`)} />
               	))}
               </div>
             <div className="open-search">

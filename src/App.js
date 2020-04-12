@@ -14,12 +14,41 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll()
       .then((books) => {
-        console.log(books)
+        // console.log(books)
         this.setState(() => ({
           books
         }))
       })
-    console.log(this.state.books)
+  }
+
+
+  updateBook = (book,shelf) => {
+    BooksAPI.update(book,shelf)
+      .then(() => {
+        this.setState((currentState) => {
+          const newState = currentState.books.map((bookIter) => {
+            if (book.id === bookIter.id) {
+              const newBook = Object.assign({},bookIter)
+              newBook.shelf = shelf
+              return newBook
+            } else {
+              return bookIter
+            }
+          });
+          return {
+            books: newState
+          }
+        })
+      })
+  }
+
+  addBook = (book,shelf) => {
+    BooksAPI.update(book,shelf)
+      .then((book) => {
+        this.setState((currentState) => ({
+          books: currentState.books.concat([book])
+        }))
+      })
   }
 
   render() {
@@ -28,6 +57,7 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <ListBooks
             books={this.state.books}
+            onUpdateBook={this.updateBook}
           />
         )} />
         <Route path='/search' render={() => (
