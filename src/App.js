@@ -55,6 +55,12 @@ class BooksApp extends React.Component {
       })
   }
 
+  clearResults = () => {
+    this.setState(() => ({
+      searchBooks: []
+    }))
+  }
+
 
   search = (searchQuery) => {
     // console.log(searchQuery)
@@ -104,6 +110,7 @@ class BooksApp extends React.Component {
             results={this.state.searchBooks}
             onAddBook={this.addBook}
             onSearch={this.search}
+            onClearResults={this.clearResults}
           />
         )} />
       </div>

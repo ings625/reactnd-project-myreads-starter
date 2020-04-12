@@ -6,13 +6,13 @@ import Book from './Book'
 class SearchBooks extends Component {
 
 	render() {
-		const { results, onAddBook, onSearch } = this.props
+		const { results, onAddBook, onSearch, onClearResults } = this.props
 
 		return (
           <div className="search-books">
             <div className="search-books-bar">
             <Link to="/">
-              <button className="close-search">
+              <button onClick={() => onClearResults()} className="close-search">
               		Close
               </button>
               </Link>
