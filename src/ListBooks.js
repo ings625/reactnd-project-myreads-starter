@@ -5,8 +5,6 @@ import BookShelf from'./BookShelf'
 
 class ListBooks extends Component {
 
-
-
 	render() {
 		const shelves = [{
 			name: "Currently Reading",
@@ -17,8 +15,7 @@ class ListBooks extends Component {
 		},{
 			name: "Want to Read",
 			shelf: 'wantToRead'
-		}
-		]
+		}]
 		const { books, onUpdateBook } = this.props
 
 		return (
@@ -32,16 +29,15 @@ class ListBooks extends Component {
               		<BookShelf key={shelf.shelf} name={shelf.name} onUpdateBook={onUpdateBook} books={books.filter(book => book.shelf === `${shelf.shelf}`)} />
               	))}
               </div>
-            <div className="open-search">
-            	<Link to="/search">
-              	<button>Add a book</button>
-              </Link>
+              <div className="open-search">
+              	<Link to="/search">
+                	<button>Add a book</button>
+                </Link>
+              </div>
             </div>
-          </div>
           </div>
         )
 	}
-
 }
 
 export default ListBooks
